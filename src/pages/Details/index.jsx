@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Container, Link } from './styles.js';
 
 import { Header } from '../../components/Header';
@@ -6,6 +7,15 @@ import { Section } from '../../components/Section'
 
 export function Details() {
 
+=======
+import { Container } from './styles.js';
+
+import { Header } from '../../components/Header';
+import { ButtonText } from '../../components/ButtonText';
+
+export function Details() {
+  
+>>>>>>> 381d5f0e7a7d0588794e3e72d8b42f3da1f891b2
   return (
     <Container>
       <Header />
