@@ -1,10 +1,11 @@
-import { Container } from './styles.js';
+import { Container, Link } from './styles.js';
 
 import { Header } from '../../components/Header';
 import { ButtonText } from '../../components/ButtonText';
+import { Section } from '../../components/Section'
 
 export function Details() {
-  
+
   return (
     <Container>
       <Header />
@@ -28,6 +29,29 @@ export function Details() {
         Ipsum passages, and more recently with desktop publishing software like
         Aldus PageMaker including versions of Lorem Ipsum.
       </p>
+
+
+      <Section title="Links Úteis">
+        <Link>
+
+          <li>
+            <a href='https://www.rocketseat.com.br/'>
+              https://www.rocketseat.com.br/
+            </a>
+          </li>
+
+          <li>
+            <a href='https://www.rocketseat.com.br/'>
+              https://www.rocketseat.com.br/
+            </a>
+          </li>
+
+        </Link>
+      </Section>
+
+      <Section title="Marcadores">
+
+      </Section>
 
       </main>
 
