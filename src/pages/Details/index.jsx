@@ -1,22 +1,14 @@
-<<<<<<< HEAD
-import { Container, Link } from './styles.js';
+import { Container, Link, BookMarks } from './styles.js';
 
 import { Header } from '../../components/Header';
 import { ButtonText } from '../../components/ButtonText';
-import { Section } from '../../components/Section'
-
-export function Details() {
-
-=======
-import { Container } from './styles.js';
-
-import { Header } from '../../components/Header';
-import { ButtonText } from '../../components/ButtonText';
+import { Section } from '../../components/Section';
+import { Tag } from '../../components/Tag';
 
 export function Details() {
   
->>>>>>> 381d5f0e7a7d0588794e3e72d8b42f3da1f891b2
   return (
+
     <Container>
       <Header />
 
@@ -60,6 +52,15 @@ export function Details() {
       </Section>
 
       <Section title="Marcadores">
+
+        <BookMarks>
+          <Tag title="TAGhfweohfo"/>
+          <Tag title="1111111111111111111111111"/>
+          <Tag title="TAGhfwçkhasdf"/>
+          <Tag title="TAbfçkhasdf"/>
+          <Tag title="TAbfçkhasdf"/>
+          <Tag title="TAbfçkhasdf"/>
+        </BookMarks>
 
       </Section>
 

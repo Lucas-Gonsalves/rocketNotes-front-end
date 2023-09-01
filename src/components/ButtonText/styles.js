@@ -7,5 +7,4 @@ export const Container = styled.button`
  
   color: ${({ theme, $isActive }) => $isActive ? theme.COLORS.ORANGE : theme.COLORS.GRAY_100};
   font-weight: 400;
-
 `;
