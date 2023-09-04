@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 export const Container = styled.div`
 
-  width: 34rem;
+  width: 100%;
   height: 5.6rem;
 
   display: flex;
@@ -30,11 +30,11 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.WHITE}
   };
 
+  
   > svg {
     width: 2rem;
     height: 1.8rem;
 
     color: ${({ theme }) => theme.COLORS.GRAY_300};
   };
-
 `;

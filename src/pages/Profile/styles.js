@@ -3,16 +3,12 @@ import { styled } from 'styled-components';
 export const Container = styled.div`
   
   display: grid;
-
   grid-template-rows: 14.4rem auto;
-  grid-template-columns: auto;
-
   grid-template-areas: 
     "header"
     "form"
   ;
 
-  
 
   > header {
     grid-area: header;
@@ -20,9 +16,10 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
 
-    padding-left: 14.4rem;
+    padding-left: 12.4rem;
 
     background: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+
 
     svg {
       width: 2.5rem;
@@ -31,53 +28,43 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.GRAY_100};
 
       cursor: pointer;
-
       transition: .6s;
     };
+
 
     svg:hover {
       color: ${({ theme }) => theme.COLORS.ORANGE};
       transition: 1.2s;
     };
   };
-
 `;
-
-export const Form = styled.form`
-  grid-area: form;
-
-  margin: auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;  
 
 
 export const Avatar = styled.div`
+  position: relative;
+  margin: -12.4rem auto 6.4rem;
 
+  height: 18.6rem;
+  width: 18.6rem;
 
 
   > img {
-    position: relative;
-
-    width: 18.6rem;
+    width: 18.5rem;
     height: 18.6rem;
-
-    top: -9.2rem;
 
     border-radius: 50%;
   };
 
   > label {
-    position: relative;
 
     width: 4.8rem;
     height: 4.8rem;
+
     border-radius: 50%;
 
-    left: 13.8rem;
-    bottom: 14.4rem;
+    position: absolute;
+    bottom: .7rem;
+    right: .7rem;
 
     background-color: ${({ theme }) => theme.COLORS.ORANGE};
 
@@ -87,18 +74,45 @@ export const Avatar = styled.div`
 
     cursor: pointer;
 
-    input {
 
+    input {
       display: none;
     };
 
-    svg{
 
+    svg{
       width: 2rem;
       height: 2rem;
 
       color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
     };
   };
-
 `;
+
+
+export const Form = styled.form`
+  grid-area: form;
+  padding: 1rem;
+
+  width: 34rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+
+  margin: 3rem auto 0rem;
+
+
+  > div:nth-child(4) {
+    margin-top: 1.6rem;
+  };
+
+
+  > button:last-child {
+    
+    margin-top: 1.6rem;
+
+    height: 5rem;
+    width: 100%;
+  };
+`;  
