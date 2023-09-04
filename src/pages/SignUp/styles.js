@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
-import backgroundImg from '../../assets/background.png';
+import backgroundImg from "../../assets/background.png"
+
 
 export const Container = styled.div`
 
@@ -8,23 +9,28 @@ export const Container = styled.div`
 
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: minmax(20rem, 61.2rem) auto;
+  grid-template-columns: auto minmax(20rem, 61.2rem);
+ ;
 
   grid-template-areas: 
-  "form background";
+    "background form"
+  ;
 `;
 
 
-export const Form = styled.form `
+export const Form = styled.form`
   grid-area: form;
 
   display: flex;
   flex-direction: column;
 
+  margin: auto;
   padding: 1.5rem;
 
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  max-width: 35rem;
 
   > h1 {
     color: ${({ theme }) => theme.COLORS.ORANGE};
@@ -35,40 +41,38 @@ export const Form = styled.form `
 
   > p {
     color: ${({ theme }) => theme.COLORS.GRAY_100};
-
     font-size: 1.4rem;
-    padding-bottom: 4.8rem;
-  };
 
-  > h2 {
+    padding-bottom: 4.8rem;
+  }
+
+  h2 {
     font-size: 2.4rem;
     font-weight: 500;
 
     padding-bottom: 4.8rem;
-  };
+  }
 
   > div {
     margin-bottom: .8rem;
-    max-width: 34rem;
-  };
 
-  > button{
-    margin: 1.6rem 0 12.4rem 0;
-    
+  }
+
+  > button {
+    margin: .8rem 0 15.2rem 0;
+
+
     height: 5.6rem;
-    max-width: 34rem;
-  };
+  }
 
   > a {
-    color: ${({ theme }) => theme.COLORS.ORANGE};
-    cursor: pointer;
-  };
-`;
+    color: ${({ theme }) => theme.COLORS.ORANGE}
+  }
+`
 
 
 export const Background = styled.div`
   grid-area: background;
-
   background: url(${backgroundImg}) no-repeat center center;
   background-size: cover;
 `;
