@@ -24,7 +24,7 @@ export default createGlobalStyle`
   }
 
 
-  body, button, input-security, textarea {
+  body, button, input-security, textarea, input {
 
     font-family: 'Roboto Slab', serif;;
     font-size: 1.6rem;
