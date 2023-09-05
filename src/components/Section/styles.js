@@ -15,6 +15,6 @@ export const Container = styled.section`
     border-bottom-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
     border-bottom-style: solid;
     border-bottom-width: 1px;
-  }
+  };
 
 `;

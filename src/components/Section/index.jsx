@@ -9,5 +9,5 @@ export function Section({ title, children}) {
 
       {children}
     </Container>
-  )
+  );
 };
