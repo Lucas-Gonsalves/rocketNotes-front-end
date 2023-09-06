@@ -16,5 +16,4 @@ export const Container = styled.section`
     border-bottom-style: solid;
     border-bottom-width: 1px;
   };
-
 `;

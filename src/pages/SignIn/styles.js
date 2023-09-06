@@ -25,6 +25,7 @@ export const Form = styled.form `
 
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   > h1 {
     color: ${({ theme }) => theme.COLORS.ORANGE};

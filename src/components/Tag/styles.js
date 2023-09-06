@@ -12,5 +12,4 @@ export const Container = styled.span`
   border-radius: .5rem;
 
   padding: .5rem 1.4rem;
-
 `; 

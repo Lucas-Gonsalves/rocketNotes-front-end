@@ -15,6 +15,5 @@ export function Note({ title, children, ...rest }) {
       
 
     </Container>
-
   );
 };

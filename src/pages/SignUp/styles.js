@@ -29,6 +29,7 @@ export const Form = styled.form`
 
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   max-width: 35rem;
 

@@ -14,6 +14,5 @@ export function Input({ icon: Icon, type="text", ...rest }) {
       <input type={type} {...rest} />
 
     </Container>
-
   );
 };

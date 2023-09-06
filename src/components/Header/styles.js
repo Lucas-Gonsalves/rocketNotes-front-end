@@ -22,10 +22,8 @@ export const Container = styled.header`
 
 
 export const Profile = styled.div`
-
-
+  
   display: flex;
-
   gap: .9rem;
   align-items: center;
 
@@ -36,7 +34,8 @@ export const Profile = styled.div`
     height: 7rem;
 
     border-radius: 50%;
-  }
+  };
+
 
   > div {
 
@@ -45,17 +44,19 @@ export const Profile = styled.div`
     
     justify-content: center;
 
+
     span {
       font-size: 1.4rem;
       font-weight: 400;
 
       color: ${({ theme }) => theme.COLORS.GRAY_100};
-    }
+    };
     
+
     strong {
       font-size: 1.8rem;
-    }
-  }
+    };
+  };
 `;
 
 
@@ -64,16 +65,18 @@ export const Logout = styled.button`
   background: none;
   border: none;
 
+
   > svg {
     width: 4.9rem;
     height: 3.6rem;
 
     color: ${({ theme }) => theme.COLORS.GRAY_100};
     transition: .6s;
-  }
+  };
+
 
   > svg:hover {
     color: ${({ theme }) => theme.COLORS.ORANGE};
     transition: 1.2s;
-  }
+  };
 `;

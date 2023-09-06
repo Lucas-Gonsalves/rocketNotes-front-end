@@ -11,6 +11,7 @@ export const Container = styled.div`
 
   background: ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
+
   > h3 {
     font-size: 2.4rem;
     font-weight: 700;
@@ -18,6 +19,7 @@ export const Container = styled.div`
     padding-bottom: 2.4rem;
   };
 
+  
   > footer {
     display: flex;
     flex-wrap: wrap;

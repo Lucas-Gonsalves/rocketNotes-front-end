@@ -1,6 +1,6 @@
 import { Container, Profile, Logout } from './styles.js';
-
 import { RiShutDownLine } from 'react-icons/ri'
+
 
 export function Header() {
 
@@ -21,5 +21,5 @@ export function Header() {
       </Logout>
 
     </Container>
-  )
+  );
 };
