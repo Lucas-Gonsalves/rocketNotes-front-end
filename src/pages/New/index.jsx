@@ -8,6 +8,7 @@ import { Section } from '../../components/Section';
 import { NoteItem } from '../../components/NoteItem'
 import { Button } from '../../components/Button';
 
+
 export function New() {
 
   return (

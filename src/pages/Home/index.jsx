@@ -10,6 +10,7 @@ import { Note } from '../../components/Note';
 
 import { Tag } from '../../components/Tag'; //test
 
+
 export function Home() {
 
   return(

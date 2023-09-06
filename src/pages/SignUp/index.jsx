@@ -48,7 +48,5 @@ export function SignUp() {
       </Form>
 
     </Container>
-
-  )
-
+  );
 };

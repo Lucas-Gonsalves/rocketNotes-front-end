@@ -73,5 +73,5 @@ export function Details() {
       </main>
 
     </Container>
-  )
+  );
 };
