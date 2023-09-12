@@ -4,8 +4,31 @@ import { FiLock, FiMail } from 'react-icons/fi';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 
+import { useAuth } from '../../hooks/auth';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 export function SignIn() {
+
+  const [ email, setEmail ] = useState(null);
+  const [ password, setPassword ] = useState(null);
+
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+
+  
+  async function HandleSignIn() {
+    signIn({ email, password });
+  };
+
+
+  function HandleSignUp() {
+    navigate("/register");
+  };
+
 
   return (
 
@@ -20,18 +43,27 @@ export function SignIn() {
         <Input 
           icon={FiMail}  
           type="text"
-          placeholder="E-mail"     
+          placeholder="E-mail"
+          onChange={ e => setEmail(e.target.value) }   
         />
 
         <Input 
           icon={FiLock}
           type="password"
-          placeholder="Senha"    
+          placeholder="Senha"
+          onChange={ e => setPassword(e.target.value) } 
         />
 
-        <Button title="Entrar" />
+        <Button 
+          title="Entrar"
+          onClick={ HandleSignIn }
+        />
 
-        <a>Criar Conta</a>
+        <a 
+          onClick={HandleSignUp} 
+        >
+          Criar Conta
+        </a>
 
       </Form>
 
