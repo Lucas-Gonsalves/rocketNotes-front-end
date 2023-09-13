@@ -4,12 +4,12 @@ import { api } from '../services/api';
 import { useState, useEffect } from 'react';
 
 
-
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [ data, setData ] = useState({});
-  
+
+
 
   async function signIn({ email, password }) {
     
@@ -39,7 +39,7 @@ function AuthProvider({ children }) {
     };
   };
 
-  
+
   function signOut() {
 
     localStorage.removeItem("@rocketnotes:user");
@@ -71,6 +71,7 @@ function AuthProvider({ children }) {
 
     <AuthContext.Provider value={{ 
       signIn,
+      signOut,
       user: data.user
     }}
     >

@@ -27,6 +27,8 @@ export const Profile = styled.div`
   gap: .9rem;
   align-items: center;
 
+  cursor: pointer;
+
   
   > img {
     

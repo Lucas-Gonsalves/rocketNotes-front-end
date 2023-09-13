@@ -11,11 +11,11 @@ import { useNavigate } from 'react-router-dom';
 
 export function SignUp() {
 
-  const [ name, setName ] = useState(null)
-  const [ email, setEmail ] = useState(null)
-  const [ password, setPassword ] = useState(null)
+  const [ name, setName ] = useState(null);
+  const [ email, setEmail ] = useState(null);
+  const [ password, setPassword ] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function HandleSignUp() {
 
@@ -42,8 +42,8 @@ export function SignUp() {
 
 
   async function HandleSignIn() {
-    navigate("/")
-  }
+    navigate(-1);
+  };
 
 
   return (
@@ -64,6 +64,7 @@ export function SignUp() {
           icon={FiUser}
           placeholder="Nome"
           type="text"
+          autoComplete="username"
           onChange={ e => setName(e.target.value) }
         />
 
@@ -71,6 +72,7 @@ export function SignUp() {
           icon={FiMail}
           placeholder="E-mail"
           type="text"
+          autoComplete="email"
           onChange={ e => setEmail(e.target.value) }
         />
 
@@ -78,6 +80,7 @@ export function SignUp() {
           icon={FiLock}
           placeholder="Senha"
           type="password"
+          autoComplete="current-password"
           onChange={ e => setPassword(e.target.value) }
         />
 

@@ -11,7 +11,10 @@ export function Input({ icon: Icon, type="text", ...rest }) {
         Icon && <Icon />
       }
       
-      <input type={type} {...rest} />
+      <input 
+        type={type}
+        {...rest}
+      />
 
     </Container>
   );

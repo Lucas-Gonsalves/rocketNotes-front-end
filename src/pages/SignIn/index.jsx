@@ -19,7 +19,7 @@ export function SignIn() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
-  
+
   async function HandleSignIn() {
     signIn({ email, password });
   };
@@ -44,6 +44,7 @@ export function SignIn() {
           icon={FiMail}  
           type="text"
           placeholder="E-mail"
+          autoComplete="emial"
           onChange={ e => setEmail(e.target.value) }   
         />
 
@@ -51,6 +52,7 @@ export function SignIn() {
           icon={FiLock}
           type="password"
           placeholder="Senha"
+          autoComplete="current-password"
           onChange={ e => setPassword(e.target.value) } 
         />
 
