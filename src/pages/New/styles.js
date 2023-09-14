@@ -74,6 +74,6 @@ export const Form = styled.form`
 
   #create-note-button {
     height: 5.6rem;
-    margin-bottom: 9.8rem;
+    margin: 6.8rem 0 9.8rem;
   };
 `;

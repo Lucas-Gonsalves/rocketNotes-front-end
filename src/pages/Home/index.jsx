@@ -14,13 +14,18 @@ import { Tag } from '../../components/Tag'; //test
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export function Home() {
 
+  const navigate = useNavigate();
 
-
+  function HandleNewNote() {
+    navigate("new");
+  };
+  
 
   return(
 
@@ -95,7 +100,9 @@ export function Home() {
       </Content>
       
 
-      <NewNote>
+      <NewNote
+        onClick={ HandleNewNote }
+      >
 
         <FiPlus />
         <p>Criar Nota</p>

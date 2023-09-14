@@ -8,8 +8,88 @@ import { Section } from '../../components/Section';
 import { NoteItem } from '../../components/NoteItem'
 import { Button } from '../../components/Button';
 
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 export function New() {
+
+  const navigate = useNavigate()
+  
+  const [ title, setTitle ] = useState(null)
+  const [ desciption, setDescription ] = useState(null)
+
+  const [ newTag, setNewTag ] = useState("")
+  const [ tags, setTags ] = useState([])
+
+  const [ newLink, setNewLink ] = useState("")
+  const [ links, setLinks ] = useState([])
+
+
+  function HandleAddLink() {
+
+    if(newLink.length <= 1) {
+      return;
+    };
+    
+
+    if(links.length >= 1) {
+
+      const linkExists = links.filter(link => link === newLink);
+
+      
+      if(linkExists.length >= 1) {
+
+        setNewLink("");
+        return;
+      };
+    };
+
+
+    setLinks(prevState => [...prevState, newLink]);    
+    setNewLink("");
+  };
+  
+  function HandleRemoveLink(linkDeleted) {
+    setLinks(prevState => prevState.filter( link => link !== linkDeleted ));
+  };
+
+
+  function HandleAddTag() {
+  
+    if(newTag.length <= 1) {
+      return;
+    };
+    
+
+
+    if(tags.length >= 1) {
+      
+
+      const tagExists = tags.filter(tag => tag === newTag);
+
+      if(tagExists.length >= 1) {
+        
+        setNewTag("");
+        return;
+      };
+    };
+
+    setTags(prevState => [...prevState, newTag]);
+    setNewTag("");
+  };
+
+  function HandleRemoveTag(tagDeleted) {
+    setTags(prevState => prevState.filter(tag => tag !== tagDeleted));
+  };
+
+
+  function HandleBack() {
+    navigate(-1);
+  };
+
+
+
 
   return (
 
@@ -27,51 +107,83 @@ export function New() {
             <ButtonText 
               title="Voltar"
               $isActive={false}
+              onClick={HandleBack}
             />
 
           </header>
 
-          <Input placeholder="Título" />
-          <TextArea placeholder="Observações" />
+          <Input 
+            placeholder="Título" 
+            onChange={ e => setTitle(e.target.value) }
+          />
+
+
+          <TextArea 
+            placeholder="Observações" 
+            onChange={ e => setDescription(e.target.value) }
+          />
+
 
           <Section title="Links">
-            <div class="Links">
+            <div className="Links">
 
-              <NoteItem value="https://www.rocketseat.com.br/"/>
+              {
+                links.map((link, index) => (
+                  <NoteItem 
+                    key={String(index)}
+                    value={link}
+                    onClick={() => { HandleRemoveLink(link) }}
+                  />
+                )) 
+              } 
                 
               <NoteItem 
-                isNew  
+                value={newLink}
+                data-isnew="true"
                 placeholder="Novo Link"
+
+                onClick={HandleAddLink}
+                onChange={e => setNewLink(e.target.value)}
               />
 
             </div>
           </Section>
 
           <Section title="Marcadores">
-            <div class="Tags">
+            <div className="Tags">
 
-              <NoteItem value="React"/>
-              <NoteItem value="Nodejs"/>
-              <NoteItem value="Express"/>
-              <NoteItem value="Nodemon"/>
+              {
+                tags.map((tag, index) => (
+                  <NoteItem 
+                    key={String(index)}
+                    value={tag}
+                    onClick={() => { HandleRemoveTag(tag) }}
+                  />
+                ))
+              }
                 
-              <NoteItem 
-                isNew  
+              <NoteItem
+                value={newTag}
+                data-isnew="true"
                 placeholder="Nova Tag"
+                
+                onChange={e => setNewTag(e.target.value)}
+                onClick={HandleAddTag}
               />
 
             </div>
           </Section>
+
 
           <Button
             title="Salvar"
             id="create-note-button"
           />
 
+
         </Form>
       </main>
 
     </Container>
-
   );
 };

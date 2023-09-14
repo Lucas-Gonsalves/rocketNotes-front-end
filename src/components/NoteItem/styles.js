@@ -6,9 +6,9 @@ export const Container = styled.div`
   padding: 2rem;
   gap: 1.5rem;
 
-  background: ${({ theme, isNew }) => isNew ? "transparent" : theme.COLORS.BACKGROUND_900 };
+  background: ${({ theme, 'data-isnew': isnew }) => isnew ? "transparent" : theme.COLORS.BACKGROUND_900 };
 
-  border: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.GRAY_300}` : "none"} ;
+  border: ${({ theme, 'data-isnew': isnew }) => isnew ? `1px dashed ${theme.COLORS.GRAY_300}` : "none"} ;
   border-radius: 1rem;
 
   display: flex;
@@ -30,6 +30,6 @@ export const Container = styled.div`
 
 
   > button svg {
-    color: ${({ theme, isNew }) => isNew ? theme.COLORS.ORANGE : "#FF002E"};
+    color: ${({ theme, 'data-isnew': isnew }) => isnew ? theme.COLORS.ORANGE : "#FF002E"};
   };
 `;
