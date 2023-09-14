@@ -1,6 +1,7 @@
 import { Container, Search, Brand, Content, Menu, NewNote } from './styles';
 
 import { FiSearch, FiPlus } from 'react-icons/fi';
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 
 import { Header } from '../../components/Header';
 import { ButtonText } from '../../components/ButtonText';
@@ -10,8 +11,16 @@ import { Note } from '../../components/Note';
 
 import { Tag } from '../../components/Tag'; //test
 
+import { useAuth } from '../../hooks/auth';
+import { api } from '../../services/api';
+import { useState } from 'react';
+
+
 
 export function Home() {
+
+
+
 
   return(
 

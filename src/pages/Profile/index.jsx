@@ -29,12 +29,7 @@ export function Profile() {
 
 
   async function HandleUpdate() { // check later (reload page)
-    
-    if(old_password && !password) {
-      return alert("Altere Email/Senha para a verificação de senha.")
-    }
 
-    
     const updated = {
       name,
       email,
@@ -42,7 +37,6 @@ export function Profile() {
       old_password
     };
     
-    console.log(user)
 
     const userUpdated = Object.assign(user, updated);
     await updateProfile({ user: userUpdated, avatarFile });
