@@ -1,32 +1,98 @@
 import { Container, Form, Avatar } from './styles';
 
 import { FiArrowLeft, FiCamera, FiUser, FiMail, FiLock } from 'react-icons/fi';
+import avatarPlaceholder from '../../assets/avatar_placeHolder.svg';
 
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
+import { api } from '../../services/api';
+
 
 export function Profile() {
+
+  const { user, updateProfile } = useAuth()
+  const navigate = useNavigate()
+
+  const [ name, setName ] = useState(user.name)
+  const [ email, setEmail ] = useState(user.email)
+  const [ password, setPassword ] = useState(null)
+  const [ old_password, setOld_password ] = useState(null)
+
+  const [ avatarFile, setAvatarFile ] = useState(null)
+  const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+  const [ avatar, setAvatar ] = useState(avatarURL)
+
+
+
+  async function HandleUpdate() { // check later (reload page)
+    
+    if(old_password && !password) {
+      return alert("Altere Email/Senha para a verificação de senha.")
+    }
+
+    
+    const updated = {
+      name,
+      email,
+      password,
+      old_password
+    };
+    
+    console.log(user)
+
+    const userUpdated = Object.assign(user, updated);
+    await updateProfile({ user: userUpdated, avatarFile });
+  };
+
+
+  function HandleBack(){
+    navigate(-1);
+  };
+
+
+  function HandleChageAvatar(event) {
+
+    const file = event.target.files[0];
+    setAvatarFile(file);
+
+    const imagePreview = URL.createObjectURL(file);
+    setAvatar(imagePreview);
+  };
+
 
   return (
 
     <Container>
 
       <header>
-        <FiArrowLeft />
+        
+        <FiArrowLeft 
+          onClick={ HandleBack }
+        />
+
       </header>
 
       
       <Form>
 
         <Avatar>
-          <img src="https://github.com/Lucas-Gonsalves.png"  alt="Imagem de Usuário." />
+
+          <img 
+            src={ avatar }  
+            alt="Imagem de Usuário." 
+          />
 
           
           <label htmlFor="imageFile">
+
             <input 
               id="imageFile" 
               type="file" 
+              onChange={ HandleChageAvatar }
             />
 
             <FiCamera />
@@ -35,13 +101,44 @@ export function Profile() {
         </Avatar>
 
   
-        <Input icon={FiUser} value="Lucas-Gonsalves"/>
-        <Input icon={FiMail} value="Lucas@gmail.com"/>
+        <Input 
+          icon={FiUser} 
+          type='text'
+          value={ name }
+          placeholder="Nome"
+          autoComplete="username"
+          onChange={ e => setName(e.target.value) }
+        />
 
-        <Input icon={FiLock} placeholder="Senha Atual"/>
-        <Input icon={FiLock} placeholder="Nova Senha"/>
+        <Input 
+          icon={FiMail} 
+          type='email'
+          value={ email }
+          placeholder="Email"
+          autoComplete="email"
+          onChange={ e => setEmail(e.target.value) }
+        />
 
-        <Button title="Salvar" />
+        <Input 
+          icon={FiLock}
+          type='password' 
+          placeholder="Senha Atual"
+          autoComplete="current-password"
+          onChange={ e => setOld_password(e.target.value) }
+        />
+
+        <Input 
+          icon={FiLock} 
+          type='password'
+          placeholder="Nova Senha"
+          autoComplete="password"
+          onChange={ e => setPassword(e.target.value) }
+        />
+
+        <Button 
+          title="Salvar" 
+          onClick={ HandleUpdate }
+        />
 
       </Form>
 

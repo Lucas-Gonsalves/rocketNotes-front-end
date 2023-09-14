@@ -16,16 +16,18 @@ export function Header() {
   };
 
 
-  function HandleDetails() {
+  function HandleProfile() {
     navigate("/Profile");
   };
+
+
 
 
   return (
     <Container>
 
       <Profile 
-        onClick={ HandleDetails }
+        onClick={ HandleProfile }
       >
         <img src="https://github.com/Lucas-Gonsalves.png"  alt="Imagem de Usuário." />
         
