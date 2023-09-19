@@ -17,6 +17,17 @@ export const Container = styled.div`
     overflow-y: scroll;
     padding: 6.5rem 2rem 0 2rem;
   };
+
+  main::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.ORANGE}; 
+    border-radius: 1rem; 
+  };
+
+  main::-webkit-scrollbar {
+    width: .2rem;
+    height: 100%;
+    background-color: ${({ theme }) => theme.COLORS.GRAY_300}
+  };
 `;
 
 
