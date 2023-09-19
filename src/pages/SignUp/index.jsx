@@ -27,6 +27,11 @@ export function SignUp() {
 
     try {
       const response = await api.post("/users", { name, email, password });
+      
+      setName(null);
+      setEmail(null);
+      setPassword(null);
+      
       alert(response.data.message);
 
     } catch(error) {
@@ -62,24 +67,27 @@ export function SignUp() {
 
         <Input 
           icon={FiUser}
-          placeholder="Nome"
           type="text"
+          value={name}
+          placeholder="Nome"
           autoComplete="username"
           onChange={ e => setName(e.target.value) }
         />
 
         <Input 
-          icon={FiMail}
-          placeholder="E-mail"
           type="text"
+          icon={FiMail}
+          value={email}
+          placeholder="E-mail"
           autoComplete="email"
           onChange={ e => setEmail(e.target.value) }
         />
 
         <Input 
           icon={FiLock}
-          placeholder="Senha"
           type="password"
+          value={password}
+          placeholder="Senha"
           autoComplete="current-password"
           onChange={ e => setPassword(e.target.value) }
         />

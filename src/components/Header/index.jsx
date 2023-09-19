@@ -21,6 +21,8 @@ export function Header() {
 
   function HandleSignOut() {
     signOut();
+    navigate("/")
+    
   };
 
 

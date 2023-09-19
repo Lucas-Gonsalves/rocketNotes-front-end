@@ -57,7 +57,6 @@ export function Profile() {
     setAvatar(imagePreview);
   };
 
-
   return (
 
     <Container>

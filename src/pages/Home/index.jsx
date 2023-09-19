@@ -9,23 +9,76 @@ import { Input } from '../../components/Input';
 import { Section } from '../../components/Section';
 import { Note } from '../../components/Note';
 
-import { Tag } from '../../components/Tag'; //test
+import { Tag } from '../../components/Tag'; 
 
-import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 
 export function Home() {
-
+  
   const navigate = useNavigate();
 
+  const [ title, setTitle ] = useState("")
+  const [ notes, setNotes] = useState([])
+
+  const [ showTags, setShowTags ] = useState([])
+  const [ tags, setTags ] = useState(null);
+  const [ tagsSelected, setTagsSelected ] = useState([])
+
+
   function HandleNewNote() {
-    navigate("new");
+    navigate("/New");
   };
+
+
+  function HandleDetails(noteId) {
+    navigate(`/Details/${noteId}`);
+  };
+
   
+  function HandleTagSelected(tagNAME) {
+
+    if(tagNAME === "all") {
+      return setTagsSelected([]);
+    };
+
+    const tagAlredyExists = tagsSelected.includes(tagNAME);
+
+    if(tagAlredyExists) {
+      setTagsSelected(prevState => prevState.filter(tagSelected =>  tagSelected !== tagNAME ));
+
+    }else {
+      setTagsSelected(prevState => [ ...prevState, tagNAME ]);
+    };
+  };
+
+
+  useEffect(() => { //fethNotes
+    
+    async function fethNotes() {
+      const response = await api.get(`/notes?title=${title}&tags=${tagsSelected}`);
+      setNotes(response.data.notes);
+    };
+
+    fethNotes();
+
+  }, [tagsSelected, title]);
+
+
+  useEffect(() => { //fethTags
+
+    async function fetchTags() {
+    const response = await api.get("/tags", {});
+      
+    setTags(response.data.tags);  
+    };
+
+    fetchTags();
+
+  }, []);
 
   return(
 
@@ -43,31 +96,30 @@ export function Home() {
 
         <li>
           <ButtonText 
-          title="Todos" 
-          isActive={true}
+            title="Todos" 
+            $isActive={ tagsSelected.length === 0}
+            onClick={ () => { HandleTagSelected("all") }}
           />
         </li>
 
-        <li>
-          <ButtonText 
-            title="Frontend" 
-            $isActive={false}
-          />
-        </li>
+        {
+          tags && tags.map((tag, index) => {
+            return (
 
-        <li>
-          <ButtonText
-            title="Node" 
-            $isActive={false}
-          />
-        </li>
+              <li key={`tag_${index}`}>
+                
+                <ButtonText 
+                  title={String(tag.name)}
+                  $isActive={tagsSelected.includes(tag.name)}
+                  onClick={() => { HandleTagSelected(tag.name) }}
+                />
+              
+              </li>
 
-        <li>
-          <ButtonText 
-            title="React" 
-            $isActive={false}
-          />
-        </li>
+            )
+          }) 
+        }
+
 
       </Menu> 
 
@@ -76,7 +128,9 @@ export function Home() {
 
         <Input 
           icon={ FiSearch }
+          value={title}
           placeholder="Pesquisar pelo título"
+          onChange={e => setTitle(e.target.value)}
         />
 
       </Search> 
@@ -84,31 +138,38 @@ export function Home() {
      
       <Content>
         
-        <Section title="Minhas Notas">
+        <Section 
+          className="scroll-customise"
+          title="Minhas Notas"
+        >
 
-          <Note title="React Modal">
-            <Tag title="React" />
-          </Note>
+          
+          {
+            notes && notes.map((note, index) => {
 
-          <Note title="Exemplo de Middleware">
-            <Tag title="Express" />
-            <Tag title="NodeJs" />
-          </Note>
+              return (
+
+                <Note 
+                  key={`note_${index}`}
+                  data={note}
+                  title={note.title}
+                  onClick={ () => { HandleDetails(note.id) } }
+                />
+
+              )
+            })
+          }
 
         </ Section>
-
       </Content>
       
 
-      <NewNote
-        onClick={ HandleNewNote }
-      >
+      <NewNote onClick={ HandleNewNote } >
 
         <FiPlus />
         <p>Criar Nota</p>
 
       </NewNote>
-
     </Container>
   );
 };

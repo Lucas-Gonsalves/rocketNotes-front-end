@@ -8,7 +8,7 @@ const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [ data, setData ] = useState({});
-
+ 
 
 
   async function signIn({ email, password }) {
@@ -85,7 +85,26 @@ function AuthProvider({ children }) {
       };
     };
   };
-  
+
+
+  async function newNote({ title, description, links, tags }) {
+
+    try {
+      const response= api.post("/notes", { title, description, links, tags });
+      alert((await response).data.message);
+    
+    }catch(error) {
+
+      if(error.response) {
+        alert(error.response.data.message);
+
+      }else {
+        alert("Não foi possível criar uma nota.");
+      };
+    };
+
+  };
+
 
   useEffect(() => { //Authentication by LocalStorage
 
@@ -111,6 +130,7 @@ function AuthProvider({ children }) {
       signIn,
       signOut,
       updateProfile,
+      newNote,
       user: data.user
     }}
     >

@@ -19,6 +19,19 @@ export const Container = styled.div`
     height: 100%;
     overflow-y: scroll;
   };
+  
+
+  main::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.ORANGE}; 
+    border-radius: 1rem; 
+    height: .2rem;
+  };
+
+  main::-webkit-scrollbar {
+    width: .2rem;
+    height: 100%;
+    background-color: ${({ theme }) => theme.COLORS.GRAY_300}
+  };
 `;
 
 export const Form = styled.form`

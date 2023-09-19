@@ -8,22 +8,24 @@ import { Section } from '../../components/Section';
 import { NoteItem } from '../../components/NoteItem'
 import { Button } from '../../components/Button';
 
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 
 
 export function New() {
 
-  const navigate = useNavigate()
+  const { newNote } = useAuth();
+  const navigate = useNavigate();
   
-  const [ title, setTitle ] = useState(null)
-  const [ desciption, setDescription ] = useState(null)
+  const [ title, setTitle ] = useState("");
+  const [ description, setDescription ] = useState("");
 
-  const [ newTag, setNewTag ] = useState("")
-  const [ tags, setTags ] = useState([])
+  const [ newTag, setNewTag ] = useState("");
+  const [ tags, setTags ] = useState([]);
 
-  const [ newLink, setNewLink ] = useState("")
-  const [ links, setLinks ] = useState([])
+  const [ newLink, setNewLink ] = useState("");
+  const [ links, setLinks ] = useState([]);
 
 
   function HandleAddLink() {
@@ -60,12 +62,10 @@ export function New() {
     if(newTag.length <= 1) {
       return;
     };
-    
 
 
     if(tags.length >= 1) {
       
-
       const tagExists = tags.filter(tag => tag === newTag);
 
       if(tagExists.length >= 1) {
@@ -84,10 +84,31 @@ export function New() {
   };
 
 
+  async function HandleNewNote() {
+
+    if(newTag || newLink) {
+      return alert("Confirme a tag/link para criação de nota.")
+    }
+
+    const note = {
+      title,
+      description,
+      tags,
+      links
+    };
+
+    await newNote(note);
+
+    setTitle("")
+    setDescription("")
+    setLinks([])
+    setTags([])
+  };
+
+
   function HandleBack() {
     navigate(-1);
   };
-
 
 
 
@@ -113,12 +134,14 @@ export function New() {
           </header>
 
           <Input 
+            value={title}
             placeholder="Título" 
             onChange={ e => setTitle(e.target.value) }
           />
 
 
           <TextArea 
+            value={description}
             placeholder="Observações" 
             onChange={ e => setDescription(e.target.value) }
           />
@@ -178,6 +201,7 @@ export function New() {
           <Button
             title="Salvar"
             id="create-note-button"
+            onClick={ HandleNewNote }
           />
 
 
